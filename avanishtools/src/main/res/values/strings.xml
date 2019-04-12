@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AvanishTools</string>
+
+    <string name="err_network_connection" translatable="false">Network Connection is not Available</string>
+    <string name="err_server_error404" translatable="false">The service you requested is not available yet.</string>
+    <string name="err_server_error500" translatable="false">The service you requested is broken.</string>
+    <string name="err_server_errorUnknow" translatable="false">The service you requested is unknown</string>
+    <string name="err_enable_manual_setting" translatable="false">Go to Settings find our app,Tap App Permissions and enable Permissions.</string>
+    <string name="err_granted" translatable="false">Granted..</string>
+
+    <!-- common messages -->
+    <string name="msg_no_internet">No Internet Connection!</string>
+    <string name="msg_unknown_error">Unknown Error</string>
+    <string name="default_progress_dialog_message" translatable="false">Loading...</string>
+    <string name="msg_request_timed_out" translatable="false">Request timed out! Internet connection may be slow.</string>
+    <string name="msg_authentication_failed" translatable="false">Authentication failed</string>
+    <string name="msg_server_error" translatable="false">Server Error!</string>
+    <string name="msg_network_error" translatable="false">Network Error!</string>
+    <string name="msg_parse_error" translatable="false">Parse Error!</string>
+    <!-- extra key-->
+    <string name="please_wait">Please wait...</string>
+    <string name="close">Close..</string>
+
+</resources>
