@@ -50,14 +50,6 @@ public interface ValueConstants {
     String _CANCLLED = "cancelled";
 
 
-
-    // type of value for fragment constant.
-
-    String BOOKING_FRAGMENT = "Booking";
-    String NOTIFICATION_FRAGMENT = "Notification";
-    String PROFILE_FRAGMENT = "Profile";
-    String MORE_FRAGMENT = "More";
-
     int FEEDBACK_FRAGMENT = 5;
     int RATE_US_FRAGMENT = 6;
     int ABOUT_FRAGMENT = 7;

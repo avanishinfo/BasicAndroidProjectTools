@@ -28,7 +28,7 @@ public interface DBConsts {
     String COLUMN_USER_SUPER_ADMIN = "user_super_admin";
     String COLUMN_USER_USER_LAST_LOGIN = "user_last_login";
 
-    String DATABASE_NAME = "/mnt/sdcard/jeem_customer.db";
+    String DATABASE_NAME = "/mnt/sdcard/nic_challan.db";
     int DATABASE_VERSION = 1;
 // end db constants
 }

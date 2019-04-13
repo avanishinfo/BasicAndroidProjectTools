@@ -42,7 +42,7 @@ import info.avanish.tools.data.MySingleton;
 
 public class BaseActivity extends AppCompatActivity implements LocationListener{
 
-    private static final String FOLDER = "jeem";
+    private static final String FOLDER = "NIC_CHALLAN";
     private Context context;
     private KProgressHUD progressDialog;
     protected Toolbar mToolbar;
