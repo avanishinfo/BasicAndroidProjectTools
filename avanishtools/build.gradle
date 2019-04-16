@@ -27,21 +27,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //app development support lib
-    implementation rootProject.ext.supportV4
     implementation rootProject.ext.supportDesign
     implementation rootProject.ext.supportAppCompat
-    implementation rootProject.ext.recyclerviewV7
-    implementation rootProject.ext.cardview
-    implementation rootProject.ext.threeTenAbp
 
+    //progress dialog
+    implementation "com.kaopiz:kprogresshud:$rootProject.progressHud"
     //api call
     implementation "com.android.volley:volley:$rootProject.volleyVersion"
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    //progress dialog
-    implementation "com.kaopiz:kprogresshud:$rootProject.progressHud"
-    //image cropper of image selection and cropper too
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
-
     //Image loader Lib
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
 }

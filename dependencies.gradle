@@ -8,7 +8,7 @@ ext {
   versionCode = 1
   versionName = '1.0'
 
-  supportLibVersion = '28.0.0'
+  supportLibVersion = '1.0.0'
   designVersion = supportLibVersion
 
   constraintLayoutVersion = '1.1.3'
@@ -31,27 +31,25 @@ ext {
   junitVersion = '4.12'
   runnerVersion = '0.5'
 
-  supportV4 = "com.android.support:support-v4:$supportLibVersion"
-  supportDesign = "com.android.support:design:$supportLibVersion"
-  supportAnnotations = "com.android.support:support-annotations:$supportLibVersion"
-  supportAppCompat = "com.android.support:appcompat-v7:$supportLibVersion"
-  recyclerviewV7 = "com.android.support:recyclerview-v7:$supportLibVersion"
-  constraintLayout = "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
-  cardview = "com.android.support:cardview-v7:$supportLibVersion"
+
+  supportV4 = "androidx.legacy:legacy-support-v4:$supportLibVersion"
+  supportDesign = "com.google.android.material:material:$supportLibVersion"
+  supportAnnotations = "androidx.annotation:annotation:$supportLibVersion"
+
+  supportAppCompat = "androidx.appcompat:appcompat:$supportLibVersion"
+  constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+  recyclerviewV7 = "androidx.recyclerview:recyclerview:$supportLibVersion"
+  cardview = "androidx.cardview:cardview:$supportLibVersion"
   // Test
   junit = "junit:junit:$junitVersion"
-  testRunner = "com.android.support.test:runner:$runnerVersion"
-  testRules = "com.android.support.test:rules:$runnerVersion"
+  testRunner = "androidx.test:runner:$runnerVersion"
+  testRules = "androidx.test:rules:$runnerVersion"
 
   // Hamcrest
   hamcrestCore = "org.hamcrest:hamcrest-core:$hamcrestVersion"
   hamcrestLibrary = "org.hamcrest:hamcrest-library:$hamcrestVersion"
   hamcrestIntegration = "org.hamcrest:hamcrest-integration:$hamcrestVersion"
-
-  // Other
-  threeTenAbp = 'com.jakewharton.threetenabp:threetenabp:1.1.0'
-  butterknife = 'com.jakewharton:butterknife:8.5.1'
-  butterknifeCompiler = 'com.jakewharton:butterknife-compiler:8.5.1'
 
   testDep = [junit,
              hamcrestCore,
