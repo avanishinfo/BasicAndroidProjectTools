@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BasicAndroidTools</string>
+
+
+    <string name="login">Login</string>
+    <string name="s_enter_email_phone" translatable="false">Enter your e-mail address or phone number.</string>
+    <string name="s_enter_email" translatable="false">Enter your e-mail address.</string>
+    <string name="s_enter_email_valid" translatable="false">Enter your valid e-mail address.</string>
+    <string name="s_enter_password" translatable="false">Enter your password.</string>
+    <string name="s_enter_password_lenght" translatable="false">Use 6 characters or more for your password</string>
+
 </resources>
