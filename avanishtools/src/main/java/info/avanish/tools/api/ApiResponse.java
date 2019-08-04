@@ -10,8 +10,10 @@ public class ApiResponse {
     private boolean success;
     private String message;
     private String errorMessage;
-    private int code;
+    private int status;
+    private int otp;
     private String other;
+
 
     public String getDetails() {
         return details;
@@ -37,12 +39,12 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
+    public int getStatus() {
+        return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(int code) {
+        this.status = code;
     }
 
     public String getOther() {
@@ -60,4 +62,13 @@ public class ApiResponse {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+    public int getOtp() {
+        return otp;
+    }
+
+    public void setOtp(int code) {
+        this.otp = code;
+    }
+
 }

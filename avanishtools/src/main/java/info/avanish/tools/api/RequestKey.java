@@ -8,8 +8,6 @@ public class RequestKey {
 
     public static final String ACCESS_TOKEN = "device_token";
     public static final String USER_KEY = "userkey";
-
     public static final String NOTIFICATION = "notification";
-
 
 }

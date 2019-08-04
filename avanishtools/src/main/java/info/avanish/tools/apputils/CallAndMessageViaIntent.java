@@ -1,4 +1,4 @@
-package info.avanish.tools.others;
+package info.avanish.tools.apputils;
 
 import android.Manifest;
 import android.content.Context;

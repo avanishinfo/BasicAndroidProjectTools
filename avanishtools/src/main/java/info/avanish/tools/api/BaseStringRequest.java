@@ -35,14 +35,12 @@ public class BaseStringRequest extends StringRequest {
     protected String toParam(Float param){
         return String.valueOf(param);
     }
-
     protected String toParam(Long param){
         return String.valueOf(param);
     }
-    protected String toParam(Double param){
+    protected String toParam(boolean param){
         return String.valueOf(param);
     }
-
     protected String toParam(String param){
         return TextUtils.isEmpty(param) ? "" : param;
     }

@@ -1,16 +1,16 @@
-package info.avanish.tools.others;
+package info.avanish.tools.widget;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringPickerDialog extends DialogFragment {
 

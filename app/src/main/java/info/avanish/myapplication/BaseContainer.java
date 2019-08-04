@@ -1,4 +1,4 @@
-package info.avanish.tools.view;
+package info.avanish.myapplication;
 
 
 import android.app.Activity;
@@ -8,20 +8,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.kaopiz.kprogresshud.KProgressHUD;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import info.avanish.tools.R;
+
+import com.google.android.material.snackbar.Snackbar;
+
 import info.avanish.tools.constant.ApiConstants;
-import info.avanish.tools.data.MySingleton;
 
 
 /**
@@ -32,8 +31,7 @@ public class BaseContainer extends Fragment {
 
     private static final String FOLDER = "app_base_container";
     protected Context context;
-    private KProgressHUD progressDialog;
-    protected MySingleton myPrefernce;
+    //protected MySingleton session;
 
     public BaseContainer() {
         // Required empty public constructor
@@ -50,39 +48,8 @@ public class BaseContainer extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myPrefernce = MySingleton.getInstance(context);
-        createProgressBar("");
-    }
+        //session = MySingleton.getInstance(context);
 
-    public void createProgressBar(String detailsLabel) {
-        progressDialog = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel(getString(R.string.please_wait))
-                .setDetailsLabel(detailsLabel).setWindowColor(getResources().getColor(R.color.colorBlack))
-                .setDimAmount(0.5f);
-    }
-
-    public void showProgressBar() {
-        /*if (context != null) {
-            //if (!getActivity().isFinishing()) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialog.show();
-                    }
-                });
-            //}
-        } else {
-            createProgressBar("");
-            progressDialog.show();
-        }*/
-
-        progressDialog.show();
-    }
-
-    public void hideProgressBar() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
     }
 
     public void showSnakebar(String message, View view) {
@@ -90,17 +57,17 @@ public class BaseContainer extends Fragment {
         } else {
             final Snackbar snackbar = Snackbar
                     .make(view, message, 7000);
-            snackbar.setAction(R.string.close, new View.OnClickListener() {
+            snackbar.setAction(info.avanish.tools.R.string.close, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     snackbar.dismiss();
                 }
             });
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorAccent));
             snackbar.setActionTextColor(Color.WHITE);
             View sbView = snackbar.getView();
-            TextView textView = (TextView) sbView.findViewById(R.id.snackbar_text);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.colorWhite));
+            TextView textView = (TextView) sbView.findViewById(info.avanish.tools.R.id.snackbar_text);
+            textView.setTextColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorWhite));
             snackbar.show();
         }
     }
@@ -108,13 +75,13 @@ public class BaseContainer extends Fragment {
     protected void requestError(int code) {
         switch(code){
             case ApiConstants.STATUS_REQUEST_NOT_AVAILABLE:
-                Toast.makeText(context, R.string.err_server_error404, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, info.avanish.tools.R.string.err_server_error404, Toast.LENGTH_SHORT).show();
                 break;
             case ApiConstants.STATUS_REQUEST_BROKEN:
-                Toast.makeText(context,R.string.err_server_error500, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, info.avanish.tools.R.string.err_server_error500, Toast.LENGTH_SHORT).show();
                 break;
             default:
-                Toast.makeText(context,R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, info.avanish.tools.R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,7 +96,7 @@ public class BaseContainer extends Fragment {
             transaction.addToBackStack(null);
         }
         //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.reverse_enter, R.anim.reverse_exit);
-        transaction.replace(R.id.container_framelayout, fragment);
+        transaction.replace(info.avanish.tools.R.id.container_framelayout, fragment);
         transaction.commit();
         try {
 
@@ -145,8 +112,8 @@ public class BaseContainer extends Fragment {
             transaction.addToBackStack(null);
         }
         fragment.setArguments(bundle);
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.reverse_enter, R.anim.reverse_exit);
-        transaction.replace(R.id.container_framelayout, fragment);
+        transaction.setCustomAnimations(info.avanish.tools.R.anim.enter, info.avanish.tools.R.anim.exit, info.avanish.tools.R.anim.reverse_enter, info.avanish.tools.R.anim.reverse_exit);
+        transaction.replace(info.avanish.tools.R.id.container_framelayout, fragment);
         transaction.commit();
         try {
 
@@ -177,6 +144,20 @@ public class BaseContainer extends Fragment {
         return isPop;
     }
 
+
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getActivity().getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(getActivity());
+        }
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
     public boolean popall_Fragment() {
 
         boolean isPop = false;
@@ -192,7 +173,7 @@ public class BaseContainer extends Fragment {
         if (addToBackStack) {
             transaction.addToBackStack(null);
         }
-        transaction.add(R.id.container_framelayout, fragment);
+        transaction.add(info.avanish.tools.R.id.container_framelayout, fragment);
         transaction.commit();
         getChildFragmentManager().executePendingTransactions();
 

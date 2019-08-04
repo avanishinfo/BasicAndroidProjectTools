@@ -2,16 +2,29 @@ package info.avanish.tools;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+
+import java.util.Locale;
+
+import info.avanish.tools.apputils.LocaleUtils;
 
 public class MyApplication extends Application {
 
-    // Gloabl declaration of variable to use in whole app
+
+    private Locale locale = null;
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        LocaleUtils.updateConfig(this, newConfig);
+    }
+
     public static boolean activityVisible; // Variable that will check the
     // current activity state
-
     @Override
     public void onCreate() {
         super.onCreate();
+
     }
 
     @Override
@@ -22,6 +35,7 @@ public class MyApplication extends Application {
     public static boolean isActivityVisible() {
         return activityVisible; // return true or false
     }
+
     public static void activityResumed() {
         activityVisible = true;// this will set true when activity resumed
     }

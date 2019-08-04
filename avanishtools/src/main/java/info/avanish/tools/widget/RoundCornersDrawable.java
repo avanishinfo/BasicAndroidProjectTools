@@ -1,4 +1,4 @@
-package info.avanish.tools.helper;
+package info.avanish.tools.widget;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

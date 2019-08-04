@@ -1,6 +1,7 @@
 package info.avanish.tools.api;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,7 +9,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import info.avanish.tools.others.JsonUtil;
+import info.avanish.tools.apputils.JsonUtil;
 
 
 /**
@@ -20,7 +21,6 @@ public class ResponseParser {
     private String response;
     private ApiResponse apiResponse;
     private Gson gson;
-
 
     public ApiResponse parse(String response) {
         this.response = response;
@@ -35,12 +35,25 @@ public class ResponseParser {
 
         try {
             JSONObject jsonObject = new JSONObject(response);
-            apiResponse.setSuccess(JsonUtil.getBoolean(jsonObject,"Status"));
-            apiResponse.setCode(JsonUtil.getInt(jsonObject,"Code"));
-            String message = JsonUtil.getString(jsonObject,"Message").replaceAll("\\[", "").replaceAll("\\]","");
-            apiResponse.setMessage(message);
-            if (JsonUtil.getBoolean(jsonObject,"Status"))
-                apiResponse.setDetails(JsonUtil.getString(jsonObject,"Payload"));
+            if (jsonObject.has("status")){
+                apiResponse.setStatus(JsonUtil.getInt(jsonObject,"status"));
+            }else {
+                apiResponse.setSuccess(JsonUtil.getBoolean(jsonObject,"status"));
+            }
+
+            if (jsonObject.has("otp")){
+                apiResponse.setOtp(JsonUtil.getInt(jsonObject,"otp"));
+            }
+            if (jsonObject.has("message")){
+                String message = JsonUtil.getString(jsonObject,"message").replaceAll("\\[", "").replaceAll("\\]","");
+                apiResponse.setMessage(message);
+            }
+            if (jsonObject.has("date_token")){
+                apiResponse.setOther(JsonUtil.getString(jsonObject,"date_token"));
+            }
+            if (JsonUtil.getInt(jsonObject,"status") == 200)
+                apiResponse.setDetails(JsonUtil.getString(jsonObject,"result"));
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -57,8 +70,18 @@ public class ResponseParser {
 
     }
 
-    public <T> T getPayload(Class<T> payloadClass) {
+    public <T> List<T> getPayloadAsList(Type listType,String response) {
+        Gson gson = new Gson();
+        listType = new TypeToken<List<T>>() {
+        }.getType();
+        return gson.fromJson(response, listType);
+    }
 
+    public <T> T getPayload(Class<T> payloadClass,String response) {
+        return gson.fromJson(response, payloadClass);
+    }
+
+    public <T> T getPayload(Class<T> payloadClass) {
         if (apiResponse == null) {
             throw new NullPointerException("call parse(String response) method before getting payload");
         }

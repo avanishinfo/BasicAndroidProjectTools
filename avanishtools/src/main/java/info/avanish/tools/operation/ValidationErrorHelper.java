@@ -1,4 +1,4 @@
-package info.avanish.tools.others;
+package info.avanish.tools.operation;
 
 import android.text.Editable;
 import android.text.TextWatcher;

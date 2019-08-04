@@ -13,6 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import info.avanish.tools.constant.StringConstants;
+
 /**
  * Created by Avanish Singh on 19/4/17.
  */
@@ -167,6 +169,9 @@ public class MyDateUtils {
         return Calendar.getInstance().getTime();
     }
 
+    public static String timeStamp(){
+        return new SimpleDateFormat(StringConstants.TIMESTAMP_FORMAT).format(new Date()).trim();
+    }
     public static long currentTimeInMillis() {
         return Calendar.getInstance().getTimeInMillis();
     }
@@ -180,7 +185,7 @@ public class MyDateUtils {
 
     public static String getDate(long timeStamp) {
         try {
-            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat sdf = new SimpleDateFormat(StringConstants.DATE_FORMAT_2);
             Date netDate = (new Date(timeStamp * 1000L));
             return sdf.format(netDate);
         } catch (Exception ex) {

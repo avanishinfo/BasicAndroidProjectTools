@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.android.volley.Response;
 
 import androidx.databinding.DataBindingUtil;
+
+import info.avanish.myapplication.BaseActivity;
 import info.avanish.myapplication.R;
 import info.avanish.myapplication.api.LoginRequest;
 import info.avanish.myapplication.databinding.ActivitySignInBinding;
@@ -17,10 +19,8 @@ import info.avanish.tools.api.VolleyNetworkRequest;
 import info.avanish.tools.apputils.DeviceUtils;
 import info.avanish.tools.constant.ApiConstants;
 import info.avanish.tools.constant.PrefernceConstants;
-import info.avanish.tools.constant.ValueConstants;
 import info.avanish.tools.network.NetworkUtils;
-import info.avanish.tools.others.ValidationErrorHelper;
-import info.avanish.tools.view.BaseActivity;
+import info.avanish.tools.operation.ValidationErrorHelper;
 
 public class SignInActivity extends BaseActivity {
 
@@ -158,7 +158,7 @@ public class SignInActivity extends BaseActivity {
     }
 
     private void afterSuccess() {
-        myPrefernce.saveData(PrefernceConstants.IS_LOGIN, ValueConstants._TRUE);
+       // myPrefernce.saveData(PrefernceConstants.IS_LOGIN, ValueConstants._TRUE);
 
        /* myPrefernce.saveData(PrefernceConstants.USER_ID, String.valueOf(mDetails.getUserId()));
         myPrefernce.saveData(PrefernceConstants.USER_FULLNAME, mDetails.getFullName());

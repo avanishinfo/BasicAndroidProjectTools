@@ -10,6 +10,7 @@ import info.avanish.tools.BuildConfig;
 
 public class AppLogger {
     private static boolean DEBUG = BuildConfig.DEBUG;
+    //private static boolean DEBUG = false;
 
     public static void d(String tag, String msg){
         if (DEBUG){

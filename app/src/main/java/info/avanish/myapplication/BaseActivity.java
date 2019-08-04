@@ -1,4 +1,4 @@
-package info.avanish.tools.view;
+package info.avanish.myapplication;
 
 import android.Manifest;
 import android.app.Activity;
@@ -19,6 +19,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -28,35 +33,33 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import info.avanish.tools.MyApplication;
-import info.avanish.tools.R;
 import info.avanish.tools.apputils.AppLogger;
+import info.avanish.tools.apputils.LocaleUtils;
 import info.avanish.tools.constant.ApiConstants;
 import info.avanish.tools.constant.PrefernceConstants;
-import info.avanish.tools.data.MySingleton;
 
-public class BaseActivity extends AppCompatActivity implements LocationListener{
+
+public abstract class BaseActivity extends AppCompatActivity implements LocationListener{
 
     private static final String FOLDER = "NIC_CHALLAN";
     private Context context;
     private KProgressHUD progressDialog;
     protected Toolbar mToolbar;
-    public MySingleton myPrefernce;
+   // public MySingleton session;
     private LocationManager locationManager;
 
 
+    public BaseActivity() {
+        LocaleUtils.updateConfig(this);
+    }
     //**************************************************************************
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        myPrefernce = MySingleton.getInstance(getApplicationContext());
+       // session = MySingleton.getInstance(getApplicationContext());
         createProgressBar("");
 
     }
@@ -86,20 +89,20 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
     }
 
     protected Animation animateView() {
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), info.avanish.tools.R.anim.alpha);
         return animation;
     }
 
     protected void requestError(int code) {
         switch (code) {
             case ApiConstants.STATUS_REQUEST_NOT_AVAILABLE:
-                Toast.makeText(getApplicationContext(), R.string.err_server_error404, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), info.avanish.tools.R.string.err_server_error404, Toast.LENGTH_SHORT).show();
                 break;
             case ApiConstants.STATUS_REQUEST_BROKEN:
-                Toast.makeText(getApplicationContext(), R.string.err_server_error500, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), info.avanish.tools.R.string.err_server_error500, Toast.LENGTH_SHORT).show();
                 break;
             default:
-                Toast.makeText(getApplicationContext(), R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), info.avanish.tools.R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -132,7 +135,7 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
         if (actionBar != null) {
             actionBar.setDisplayShowHomeEnabled(true);
             if (findViewById(resId) == null) {
-                actionBar.setIcon(R.drawable.arrow);
+                actionBar.setIcon(info.avanish.tools.R.drawable.arrow);
             } else {
                 actionBar.setIcon(resId);
 
@@ -147,7 +150,7 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
         if (close) {
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setHomeAsUpIndicator(R.drawable.arrow);
+                actionBar.setHomeAsUpIndicator(info.avanish.tools.R.drawable.arrow);
             }
 
         }
@@ -180,7 +183,7 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
 
     public void createProgressBar(String detailsLabel) {
         progressDialog = KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Please wait")
-                .setDetailsLabel(detailsLabel).setWindowColor(getResources().getColor(R.color.colorBlack))
+                .setDetailsLabel(detailsLabel).setWindowColor(getResources().getColor(info.avanish.tools.R.color.colorBlack))
                 .setDimAmount(0.5f);
     }
 
@@ -232,7 +235,7 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
     private void alertMessage(View mRoot, String message) {
         Snackbar snack = Snackbar.make(mRoot, message, Snackbar.LENGTH_LONG);
         View view = snack.getView();
-        TextView tv = view.findViewById(R.id.snackbar_text);
+        TextView tv = view.findViewById(info.avanish.tools.R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snack.show();
     }
@@ -241,19 +244,18 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
         if (view == null) {
             return;
         } else {
-            final Snackbar snackbar = Snackbar
-                    .make(view, message, 6000);
+            final Snackbar snackbar = Snackbar.make(view, message, 6000);
             snackbar.setAction("Close", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     snackbar.dismiss();
                 }
             });
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorAccent));
             snackbar.setActionTextColor(Color.WHITE);
             View sbView = snackbar.getView();
-            TextView textView = (TextView) sbView.findViewById(R.id.snackbar_text);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.colorWhite));
+            TextView textView = (TextView) sbView.findViewById(info.avanish.tools.R.id.snackbar_text);
+            textView.setTextColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorWhite));
 
                /* textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setTypeface(Typeface.DEFAULT_BOLD);*/
@@ -273,11 +275,11 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
                     snackbar.dismiss();
                 }
             });
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorAccent));
             snackbar.setActionTextColor(Color.WHITE);
             View sbView = snackbar.getView();
-            TextView textView = (TextView) sbView.findViewById(R.id.snackbar_text);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.colorWhite));
+            TextView textView = (TextView) sbView.findViewById(info.avanish.tools.R.id.snackbar_text);
+            textView.setTextColor(ContextCompat.getColor(context, info.avanish.tools.R.color.colorWhite));
 
                /* textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setTypeface(Typeface.DEFAULT_BOLD);*/
@@ -327,17 +329,10 @@ public class BaseActivity extends AppCompatActivity implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
 
-        if (TextUtils.isEmpty(myPrefernce.getData(PrefernceConstants.CURRENT_LOCATION))) {
-            String currentAddress = getCurentAddress(location.getLatitude(), location.getLongitude());
 
-            myPrefernce.saveData(PrefernceConstants.CURRENT_LAT, String.valueOf(location.getLatitude()));
-            myPrefernce.saveData(PrefernceConstants.CURRENT_LONG, String.valueOf(location.getLongitude()));
-            myPrefernce.saveData(PrefernceConstants.CURRENT_LOCATION, currentAddress);
-
-            //mBinding.include.tvSubTitle.setText(currentAddress);
-            // mBinding.include.tvSubTitle.setVisibility(View.VISIBLE);
-        }
     }
+
+
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {

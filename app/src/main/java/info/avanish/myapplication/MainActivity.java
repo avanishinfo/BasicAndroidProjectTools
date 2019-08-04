@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import info.avanish.myapplication.databinding.ActivityMainBinding;
-import info.avanish.tools.view.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

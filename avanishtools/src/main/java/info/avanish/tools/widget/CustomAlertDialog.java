@@ -1,4 +1,4 @@
-package info.avanish.tools.others;
+package info.avanish.tools.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 
 import androidx.databinding.DataBindingUtil;
+
 import info.avanish.tools.R;
 import info.avanish.tools.databinding.CustomAlertPopupBinding;
 

@@ -1,4 +1,4 @@
-package info.avanish.tools.others;
+package info.avanish.tools.operation;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,6 +21,7 @@ public class CheckPermission {
     public static final int RC_SMS_PERMISSION = 555;
     public static final int RC_STORAGE_PERMISSION = 666;
     public static final int RC_PHONE_CALL_PERMISSION = 777;
+    public static final int RC_READ_PHONE_STATE_PERMISSION = 888;
 
     /**
      * check is marshmallow or greater version
@@ -211,6 +212,30 @@ public class CheckPermission {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CALL_PHONE}, RC_PHONE_CALL_PERMISSION);
         } else {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CALL_PHONE}, RC_PHONE_CALL_PERMISSION);
+        }
+    }
+
+    /**
+     * check PHONE call permission
+     * @param context current application context
+     * @return {true} if PHONE permission granted else {false}
+     */
+    public static boolean checkReadPhoneStatePermission(Context context) {
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+
+    /**
+     * request PHONE permission
+     * @param activity current application context
+     * @param RC_PHONE_CALL_PERMISSION request code for PHONE permission
+     */
+    public static void requestReadPhoneStatePermission(Activity activity, int RC_PHONE_CALL_PERMISSION) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_PHONE_STATE)) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, RC_PHONE_CALL_PERMISSION);
+        } else {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, RC_PHONE_CALL_PERMISSION);
         }
     }
 }
