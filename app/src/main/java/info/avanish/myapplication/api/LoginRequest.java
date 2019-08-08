@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import info.avanish.tools.api.BaseStringRequest;
-import info.avanish.tools.constant.ApiConstants;
 
 /**
  * Created by avanish on 3/4/18.
@@ -20,7 +19,7 @@ public class LoginRequest extends BaseStringRequest {
     private String accessToken;
 
     public LoginRequest(String userName, String password, String device_type, String device_id, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        super(Request.Method.POST, ApiConstants.URL_POST_LOGIN, listener, errorListener);
+        super(Request.Method.POST, "", listener, errorListener);
         //userKey = MySingleton.getInstance(context).getUserKey(context);
         //accessToken = AppPrefs.getAccessToken(context);
         buildParams(userName, password,device_type, device_id);

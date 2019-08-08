@@ -20,7 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import info.avanish.tools.constant.ApiConstants;
 
 
 /**
@@ -73,7 +72,7 @@ public class BaseContainer extends Fragment {
     }
 
     protected void requestError(int code) {
-        switch(code){
+       /* switch(code){
             case ApiConstants.STATUS_REQUEST_NOT_AVAILABLE:
                 Toast.makeText(context, info.avanish.tools.R.string.err_server_error404, Toast.LENGTH_SHORT).show();
                 break;
@@ -82,7 +81,7 @@ public class BaseContainer extends Fragment {
                 break;
             default:
                 Toast.makeText(context, info.avanish.tools.R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     @Override

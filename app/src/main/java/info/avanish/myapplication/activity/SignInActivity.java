@@ -17,8 +17,6 @@ import info.avanish.tools.api.ApiResponse;
 import info.avanish.tools.api.ResponseParser;
 import info.avanish.tools.api.VolleyNetworkRequest;
 import info.avanish.tools.apputils.DeviceUtils;
-import info.avanish.tools.constant.ApiConstants;
-import info.avanish.tools.constant.PrefernceConstants;
 import info.avanish.tools.network.NetworkUtils;
 import info.avanish.tools.operation.ValidationErrorHelper;
 
@@ -152,7 +150,7 @@ public class SignInActivity extends BaseActivity {
 
         Response.ErrorListener errorListener = error -> hideProgressBar();
 
-        loginRequest = new LoginRequest(email, password, ApiConstants.PHONE_TYPE, DeviceUtils.getDeviceId(this), listener, errorListener);
+        loginRequest = new LoginRequest(email, password, "", DeviceUtils.getDeviceId(this), listener, errorListener);
         VolleyNetworkRequest.getInstance(this).addToRequestQueue(loginRequest);
 
     }

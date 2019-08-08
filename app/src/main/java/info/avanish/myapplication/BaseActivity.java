@@ -36,8 +36,6 @@ import java.util.Locale;
 import info.avanish.tools.MyApplication;
 import info.avanish.tools.apputils.AppLogger;
 import info.avanish.tools.apputils.LocaleUtils;
-import info.avanish.tools.constant.ApiConstants;
-import info.avanish.tools.constant.PrefernceConstants;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements LocationListener{
@@ -94,7 +92,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Location
     }
 
     protected void requestError(int code) {
-        switch (code) {
+      /*  switch (code) {
             case ApiConstants.STATUS_REQUEST_NOT_AVAILABLE:
                 Toast.makeText(getApplicationContext(), info.avanish.tools.R.string.err_server_error404, Toast.LENGTH_SHORT).show();
                 break;
@@ -103,7 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Location
                 break;
             default:
                 Toast.makeText(getApplicationContext(), info.avanish.tools.R.string.err_server_errorUnknow, Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     protected void initToolbar(Toolbar toolbar) {
