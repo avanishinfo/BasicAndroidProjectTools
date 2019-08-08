@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import info.avanish.tools.constant.StringConstants;
 
 /**
  * Created by Avanish Singh on 30/04/18.
@@ -141,8 +140,8 @@ public class MyStringUtils {
         return spannableString;
     }
 
-    public static String sinceDateString(Date date) {
-        return String.format("Since %s", MyDateUtils.formatDate(date, StringConstants.SINCE_DATE_FORMAT));
+    public static String sinceDateString(Date date,String SINCE_DATE_FORMAT) {
+        return String.format("Since %s", MyDateUtils.formatDate(date, SINCE_DATE_FORMAT));
     }
 
     public static String capitalizeFirstChar(String word) {
