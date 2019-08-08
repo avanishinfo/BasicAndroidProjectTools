@@ -19,8 +19,8 @@ public interface ApiConstants {
     int PICK_IMAGE_REQUEST = 1010;
 
     //String HOST_NAME ="https://echallan.parivahan.gov.in";  //Live server url
-    String HOST_NAME ="http://164.100.78.54/echallan";  //staging server url
-    //String HOST_NAME ="http://164.100.78.54/echallan-all-india";  //staging server url
+    //String HOST_NAME ="http://164.100.78.54/echallan";  //staging server url
+    String HOST_NAME ="http://164.100.78.54/echallan-all-india";  //staging server url
     //String HOST_NAME ="http://10.173.51.191/echallanstaging";  //local lab server url
     String BASE_URL = HOST_NAME+ "/api/";
 
