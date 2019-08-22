@@ -1,5 +1,6 @@
 package info.avanish.tools.operation;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -43,6 +44,20 @@ public class MyDateUtils {
         cal.set(year, month, day);
 
         return simpleDateFormat.format(cal.getTime());
+    }
+
+    public static String getMonthName(String mPrimaryDate) {
+        String month="";
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = sdf.parse(mPrimaryDate);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM");
+            month = dateFormat.format(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return month;
     }
 
     public static String formatDate(Date date, String dateFormat) {
@@ -317,6 +332,17 @@ public class MyDateUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public static String uniqueName(Context context) {
+        if (context == null) {
+            return null;
+        }
+
+        String ts = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+
+        return ts;
     }
 
     public static Date[] lastSevenDaysDates() {

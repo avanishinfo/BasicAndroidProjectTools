@@ -1,18 +1,21 @@
 package info.avanish.tools.apputils;
 
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -33,6 +36,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Locale;
 import java.util.UUID;
 
 import info.avanish.tools.BuildConfig;
@@ -65,6 +69,38 @@ public class AppUtils {
         return dbFile.exists();
     }
 
+    public static int getDisplayWidth(Context context) {
+        Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size.x;
+    }
+
+    public static void rateApp(Context context) {
+        final Uri uri = Uri.parse("market://details?id=" + context.getApplicationContext().getPackageName());
+        final Intent rateAppIntent = new Intent(Intent.ACTION_VIEW, uri);
+        if (context.getPackageManager().queryIntentActivities(rateAppIntent, 0).size() > 0) {
+            context.startActivity(rateAppIntent);
+        }
+    }
+
+    public static String getFormatPrice(String price) {
+        Double dPrice = 0.0;
+        try {
+            dPrice = Double.parseDouble(price);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return String.format(Locale.getDefault(), "%.2f", dPrice);
+    }
+
+    public static String getFormatPrice(float price) {
+        if (price == -1.0f) {
+            return "";
+        } else {
+            return String.format(Locale.getDefault(), "%.2f", price);
+        }
+    }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();

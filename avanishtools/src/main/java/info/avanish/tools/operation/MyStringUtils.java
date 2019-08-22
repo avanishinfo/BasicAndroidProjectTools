@@ -1,5 +1,6 @@
 package info.avanish.tools.operation;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -152,6 +153,17 @@ public class MyStringUtils {
 
         return String.valueOf(word.charAt(0)).toUpperCase() + word.substring(1);
 
+    }
+
+    public static String createImageName(Context context) {
+        if (context == null) {
+            return null;
+        }
+
+        String preFix = "echallan_";
+        String ts = MyDateUtils.uniqueName(context);
+
+        return preFix + "_" + ts;
     }
 
     public static String capitalizeSentence(String sentence) {
