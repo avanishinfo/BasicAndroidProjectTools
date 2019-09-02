@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import info.avanish.tools.R;
+
 public class SpinView extends AppCompatImageView implements Indeterminate {
 
     private float mRotateDegrees;
@@ -24,7 +26,7 @@ public class SpinView extends AppCompatImageView implements Indeterminate {
     }
 
     private void init() {
-        //setImageResource(R.drawable.custom_progresshud_spinner);
+            setImageResource(R.drawable.progress_spinner);
         mFrameTime = 1000 / 12;
         mUpdateViewRunnable = new Runnable() {
             @Override
