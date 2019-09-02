@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,12 +15,9 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.databinding.DataBindingUtil;
-
 import info.avanish.tools.R;
-import info.avanish.tools.databinding.DialogProgressBarBinding;
 
-public class ProgressBar {
+public class MyProgressBar {
 
     public enum Style {
         SPIN_INDETERMINATE, PIE_DETERMINATE, ANNULAR_DETERMINATE, BAR_DETERMINATE
@@ -43,7 +39,7 @@ public class ProgressBar {
     private Handler mGraceTimer;
     private boolean mFinished;
 
-    public ProgressBar(Context context) {
+    public MyProgressBar(Context context) {
         mContext = context;
         mProgressDialog = new ProgressDialog(context);
         mDimAmount = 0;
@@ -64,27 +60,27 @@ public class ProgressBar {
      * @param context Activity context that the HUD bound to
      * @return An unique HUD instance
      */
-    public static ProgressBar create(Context context) {
-        return new ProgressBar(context);
+    public static MyProgressBar create(Context context) {
+        return new MyProgressBar(context);
     }
 
     /**
-     * Create a new HUD. specify the HUD style (if you use a custom view, you need {@code ProgressBar.create(Context context)}).
+     * Create a new HUD. specify the HUD style (if you use a custom view, you need {@code MyProgressBar.create(Context context)}).
      *
      * @param context Activity context that the HUD bound to
-     * @param style One of the ProgressBar.Style values
+     * @param style One of the MyProgressBar.Style values
      * @return An unique HUD instance
      */
-    public static ProgressBar create(Context context, Style style) {
-        return new ProgressBar(context).setStyle(style);
+    public static MyProgressBar create(Context context, Style style) {
+        return new MyProgressBar(context).setStyle(style);
     }
 
     /**
      * Specify the HUD style (not needed if you use a custom view)
-     * @param style One of the ProgressBar.Style values
+     * @param style One of the MyProgressBar.Style values
      * @return Current HUD
      */
-    public ProgressBar setStyle(Style style) {
+    public MyProgressBar setStyle(Style style) {
         View view = null;
         switch (style) {
             case SPIN_INDETERMINATE:
@@ -110,7 +106,7 @@ public class ProgressBar {
      * @param dimAmount May take value from 0 to 1. Default to 0 (no dimming)
      * @return Current HUD
      */
-    public ProgressBar setDimAmount(float dimAmount) {
+    public MyProgressBar setDimAmount(float dimAmount) {
         if (dimAmount >= 0 && dimAmount <= 1) {
             mDimAmount = dimAmount;
         }
@@ -123,7 +119,7 @@ public class ProgressBar {
      * @param height in dp
      * @return Current HUD
      */
-    public ProgressBar setSize(int width, int height) {
+    public MyProgressBar setSize(int width, int height) {
         mProgressDialog.setSize(width, height);
         return this;
     }
@@ -134,7 +130,7 @@ public class ProgressBar {
      * @return Current HUD
      */
     @Deprecated
-    public ProgressBar setWindowColor(int color) {
+    public MyProgressBar setWindowColor(int color) {
         mWindowColor = color;
         return this;
     }
@@ -144,7 +140,7 @@ public class ProgressBar {
      * @param color ARGB color
      * @return Current HUD
      */
-    public ProgressBar setBackgroundColor(int color) {
+    public MyProgressBar setBackgroundColor(int color) {
         mWindowColor = color;
         return this;
     }
@@ -154,7 +150,7 @@ public class ProgressBar {
      * @param radius Corner radius in dp
      * @return Current HUD
      */
-    public ProgressBar setCornerRadius(float radius) {
+    public MyProgressBar setCornerRadius(float radius) {
         mCornerRadius = radius;
         return this;
     }
@@ -164,7 +160,7 @@ public class ProgressBar {
      * @param scale Default is 1. If you want double the speed, set the param at 2.
      * @return Current HUD
      */
-    public ProgressBar setAnimationSpeed(int scale) {
+    public MyProgressBar setAnimationSpeed(int scale) {
         mAnimateSpeed = scale;
         return this;
     }
@@ -173,7 +169,7 @@ public class ProgressBar {
      * Optional label to be displayed.
      * @return Current HUD
      */
-    public ProgressBar setLabel(String label) {
+    public MyProgressBar setLabel(String label) {
         mProgressDialog.setLabel(label);
         return this;
     }
@@ -182,7 +178,7 @@ public class ProgressBar {
      * Optional label to be displayed
      * @return Current HUD
      */
-    public ProgressBar setLabel(String label, int color) {
+    public MyProgressBar setLabel(String label, int color) {
         mProgressDialog.setLabel(label, color);
         return this;
     }
@@ -191,7 +187,7 @@ public class ProgressBar {
      * Optional detail description to be displayed on the HUD
      * @return Current HUD
      */
-    public ProgressBar setDetailsLabel(String detailsLabel) {
+    public MyProgressBar setDetailsLabel(String detailsLabel) {
         mProgressDialog.setDetailsLabel(detailsLabel);
         return this;
     }
@@ -200,7 +196,7 @@ public class ProgressBar {
      * Optional detail description to be displayed
      * @return Current HUD
      */
-    public ProgressBar setDetailsLabel(String detailsLabel, int color) {
+    public MyProgressBar setDetailsLabel(String detailsLabel, int color) {
         mProgressDialog.setDetailsLabel(detailsLabel, color);
         return this;
     }
@@ -209,7 +205,7 @@ public class ProgressBar {
      * Max value for use in one of the determinate styles
      * @return Current HUD
      */
-    public ProgressBar setMaxProgress(int maxProgress) {
+    public MyProgressBar setMaxProgress(int maxProgress) {
         mMaxProgress = maxProgress;
         return this;
     }
@@ -227,7 +223,7 @@ public class ProgressBar {
      * @param view Must not be null
      * @return Current HUD
      */
-    public ProgressBar setCustomView(View view) {
+    public MyProgressBar setCustomView(View view) {
         if (view != null) {
             mProgressDialog.setView(view);
         } else {
@@ -245,7 +241,7 @@ public class ProgressBar {
      *
      * @return Current HUD
      */
-    public ProgressBar setCancellable(boolean isCancellable) {
+    public MyProgressBar setCancellable(boolean isCancellable) {
         mProgressDialog.setCancelable(isCancellable);
         mProgressDialog.setOnCancelListener(null);
         return this;
@@ -260,7 +256,7 @@ public class ProgressBar {
      *
      * @return Current HUD
      */
-    public ProgressBar setCancellable(DialogInterface.OnCancelListener listener) {
+    public MyProgressBar setCancellable(DialogInterface.OnCancelListener listener) {
         mProgressDialog.setCancelable(null != listener);
         mProgressDialog.setOnCancelListener(listener);
         return this;
@@ -270,7 +266,7 @@ public class ProgressBar {
      * Specify whether this HUD closes itself if progress reaches max. Default is true.
      * @return Current HUD
      */
-    public ProgressBar setAutoDismiss(boolean isAutoDismiss) {
+    public MyProgressBar setAutoDismiss(boolean isAutoDismiss) {
         mIsAutoDismiss = isAutoDismiss;
         return this;
     }
@@ -284,12 +280,12 @@ public class ProgressBar {
      * @param graceTimeMs Grace time in milliseconds
      * @return Current HUD
      */
-    public ProgressBar setGraceTime(int graceTimeMs) {
+    public MyProgressBar setGraceTime(int graceTimeMs) {
         mGraceTimeMs = graceTimeMs;
         return this;
     }
 
-    public ProgressBar show() {
+    public MyProgressBar show() {
         if (!isShowing()) {
             mFinished = false;
             if (mGraceTimeMs == 0) {
