@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -15,9 +16,10 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import wb.parivahan.echallan.R;
-import wb.parivahan.echallan.databinding.DialogKprogressHudBinding;
+import androidx.databinding.DataBindingUtil;
 
+import info.avanish.tools.R;
+import info.avanish.tools.databinding.DialogProgressBarBinding;
 
 public class ProgressBar {
 
@@ -336,7 +338,6 @@ public class ProgressBar {
         private int mWidth, mHeight;
         private int mLabelColor = Color.WHITE;
         private int mDetailColor = Color.WHITE;
-        private DialogKprogressHudBinding binding;
 
         public ProgressDialog(Context context) {
             super(context);
@@ -346,10 +347,7 @@ public class ProgressBar {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             requestWindowFeature(Window.FEATURE_NO_TITLE);
-            setContentView(R.layout.dialog_kprogress_hud);
-            /*//binding = DataBindingUtil.setContentView(ProgressDialog.this,R.layout.dialog_kprogress_hud);
-            binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.dialog_kprogress_hud, null, false);
-            setContentView(binding.getRoot());*/
+            setContentView(R.layout.dialog_progress_bar);
 
             Window window = getWindow();
             window.setBackgroundDrawable(new ColorDrawable(0));

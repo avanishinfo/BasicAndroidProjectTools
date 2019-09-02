@@ -7,7 +7,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import wb.parivahan.echallan.R;
+import info.avanish.tools.R;
+
 
 public class BackgroundLayout extends LinearLayout {
 
