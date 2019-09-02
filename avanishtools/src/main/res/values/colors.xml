@@ -26,5 +26,8 @@
     <color name="welcome_active">#d48766</color>
     <color name="welcome_inactive">#f0d0c5</color>
 
+    <color name="progress_default_color">#b1000000</color>
+    <color name="progress_grey_color">#449E9E9E</color>
+
 </resources>
 
